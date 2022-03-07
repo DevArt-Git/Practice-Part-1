@@ -1,19 +1,36 @@
+'use strict';
 let numberOfFilms = +prompt('Сколько фильмов уже посмотрели', 'Хотя бы примерно');
 
 let personaMovieDB = {
-    count : numberOfFilms,
-    movies : {},
-    actors : {},
-    genres : [],
-    privat : false
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
 };
 
-let a = prompt("Один из последних просмотренных фильмов?", ''),
-    b = prompt("На сколько оцените его?", '' ),
-    c = prompt("Один из последних просмотренных фильмов?", ''),
-    d = prompt("На сколько оцените его?", '' );
+for (let i = 0; i < 2; i++) {
 
-personaMovieDB.movies[a] = b;
-personaMovieDB.movies[c] = d;
+    let a = prompt("Один из последних просмотренных фильмов?", ''),
+        b = prompt("На сколько оцените его?", '');
+
+    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+        personaMovieDB.movies[a] = b;
+        console.log('done');
+    } else {
+        console.log('error');
+        i--;
+    }
+}
+
+if (personaMovieDB.count < 10) {
+    alert('Просмотрено довольно мало фильмов');
+} else if (10 <= personaMovieDB.count && personaMovieDB.count < 30) {
+    alert('Вы классический зритель');
+} else if (personaMovieDB.count >= 30) {
+    alert('Вы киноман!');
+} else {
+    alert('Произошла ошибка');
+}
 
 console.log(personaMovieDB);
